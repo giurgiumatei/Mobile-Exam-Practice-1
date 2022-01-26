@@ -19,10 +19,20 @@ export const UserList: React.FC = () => {
   }, []);
 
   return (
-    <IonPage>
       <IonContent>
         <IonList>
           {messages
+            .filter(message => message.read === false)
+            .sort(message => message.created).reverse()
+            .map((message) => message.sender)
+            .filter((x, i, a) => a.indexOf(x) === i)
+            .map((username) => (
+              <User username={username}></User>
+            ))}
+        </IonList>
+        <IonList>
+          {messages
+            .filter(message => message.read === true)
             .map((message) => message.sender)
             .filter((x, i, a) => a.indexOf(x) === i)
             .map((username) => (
@@ -30,6 +40,5 @@ export const UserList: React.FC = () => {
             ))}
         </IonList>
       </IonContent>
-    </IonPage>
   );
 };

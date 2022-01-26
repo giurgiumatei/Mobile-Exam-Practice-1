@@ -19,7 +19,6 @@ export const MessageList: React.FC = () => {
   }, []);
 
   return (
-    <IonPage>
       <IonContent>
         <IonList>
           {messages.map(({ id, text, read, sender, created }) => (
@@ -34,6 +33,5 @@ export const MessageList: React.FC = () => {
           ))}
         </IonList>
       </IonContent>
-    </IonPage>
   );
 };
